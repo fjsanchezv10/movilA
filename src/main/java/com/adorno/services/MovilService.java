@@ -8,18 +8,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.StreamSupport;
 
 @Service
 public class MovilService {
-    private MovilRepository movilRepository;
+    private final MovilRepository movilRepository;
+
+    public MovilService(MovilRepository movilRepository) {
+        this.movilRepository = movilRepository;
+
+    }
+
     public Optional<List<Movil>> getFiveMovilSummarized() {
-        return Optional.ofNullable(movilRepository
-                .findFirst5()
-                .stream()
-                .map(movil -> new Movil(movil.getMarca(), movil.getModelo(), movil.getProcesador(), movil.getAlmacenamiento(), movil.getRam(), movil.getPrecio()))
-                .toList());
+        List<Movil> listaMovil = new CopyOnWriteArrayList<>();
+        long lastId = 0;
+        for(int i=0; i<5; i++){
+            long newId = new Random().nextLong(movilRepository.count());
+            if(newId != lastId){
+                listaMovil.add(movilRepository.findById(newId));
+                lastId = newId;
+            } else {
+                i--;
+            }
+        }
+        return Optional.ofNullable(listaMovil);
     }
     public Optional<List<Movil>> getAll() {
         return Optional.ofNullable(StreamSupport
