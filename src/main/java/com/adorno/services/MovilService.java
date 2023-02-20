@@ -3,6 +3,7 @@ package com.adorno.services;
 import com.adorno.model.Movil;
 import com.adorno.model.Pair;
 import com.adorno.model.TipoPantalla;
+import com.adorno.repo.MovilOM;
 import com.adorno.repo.MovilRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +19,23 @@ public class MovilService {
 
     public MovilService(MovilRepository movilRepository) {
         this.movilRepository = movilRepository;
-
     }
 
     public Optional<List<Movil>> getFiveMovilSummarized() {
         List<Movil> listaMovil = new CopyOnWriteArrayList<>();
         long lastId = 0;
-        for(int i=0; i<5; i++){
-            long newId = new Random().nextLong(movilRepository.count());
-            if(newId != lastId){
-                listaMovil.add(movilRepository.findById(newId));
-                lastId = newId;
-            } else {
-                i--;
+        if(movilRepository.count() > 0){
+            for(int i=0; i<5; i++){
+                long newId = new Random().nextLong(movilRepository.count());
+                if(newId != lastId){
+                    listaMovil.add(movilRepository.findById(newId));
+                    lastId = newId;
+                } else {
+                    i--;
+                }
             }
+        } else {
+            return Optional.empty();
         }
         return Optional.ofNullable(listaMovil);
     }

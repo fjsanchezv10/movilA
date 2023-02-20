@@ -19,7 +19,7 @@ public class Movil {
 	private String marca;
 	@NonNull
 	private String modelo;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@NonNull
 	private Procesador procesador;
 	@NonNull
