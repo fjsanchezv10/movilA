@@ -10,7 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
-@Builder
 public class Movil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +23,8 @@ public class Movil {
 	private Procesador procesador;
 	@NonNull
 	private Long almacenamiento;
-	private float pulgadas;
-	private TipoPantalla tipoPantalla;
+	@ManyToOne
+	private Pantalla pantalla;
 	@NonNull
 	private Long ram;
 	private Double dimensionAlto;
@@ -39,4 +38,7 @@ public class Movil {
 	private float precio;
 	private Date fechaNacimiento;
 
+	public TipoPantalla getTipoPantalla(){
+		return this.pantalla.getTipoPantalla();
+	}
 }

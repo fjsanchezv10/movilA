@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface MovilRepository extends CrudRepository<Movil, Long> {
-    List<Movil> findAllByMarcaLike(String marca);
+    List<Movil> findByMarcaLike(String marca);
     List<Movil> findAllByPrecioGreaterThanAndPrecioLessThan(float min, float max);
     List<Movil> findAllByRamGreaterThanAndRamLessThan(float min, float max);
     List<Movil> findAllByNfcIsTrue();

@@ -7,9 +7,7 @@ import com.adorno.repo.MovilOM;
 import com.adorno.repo.MovilRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.StreamSupport;
 
@@ -30,15 +28,13 @@ public class MovilService {
         }
     }
 
-    public Optional<List<Movil>> getFiveMovilSummarized() {
-        List<Movil> listaMovil = new CopyOnWriteArrayList<>();
-        long lastId = 0;
+    public Optional<Set<Movil>> getFiveMovilSummarized() {
+        Set<Movil> listaMovil = new HashSet<>();
         if(movilRepository.count() > 0){
             for(int i=0; i<5; i++){
-                long newId = new Random().nextLong(movilRepository.count());
-                if(newId != lastId){
-                    listaMovil.add(movilRepository.findById(newId));
-                    lastId = newId;
+                long random = new Random().nextLong(movilRepository.count()+1);
+                if(!listaMovil.contains(movilRepository.findById(random))){
+                    listaMovil.add(movilRepository.findById(random));
                 } else {
                     i--;
                 }
@@ -55,13 +51,16 @@ public class MovilService {
     }
     public Optional<List<Movil>> getMovilsByMarcaSummarized(String marca) {
         return Optional.ofNullable(movilRepository
-                .findAllByMarcaLike(marca)
+                .findByMarcaLike(marca)
                 .stream()
                 .map(movil -> new Movil(movil.getMarca(), movil.getModelo(), movil.getProcesador(), movil.getAlmacenamiento(), movil.getRam(), movil.getPrecio()))
                 .toList());
     }
     public Optional<List<Movil>> getMovilesByTipoPantalla(TipoPantalla tipoPantalla) {
-        return Optional.ofNullable(movilRepository.findAllByTipoPantallaLike(tipoPantalla));
+        return Optional.ofNullable(StreamSupport
+                .stream(movilRepository.findAll().spliterator(), false)
+                .filter((Movil movil) -> movil.getTipoPantalla().equals(tipoPantalla))
+                .toList());
     }
     public Optional<List<Movil>> getMovilesByPrecio(float min, float max){
         return Optional.ofNullable(movilRepository.findAllByPrecioGreaterThanAndPrecioLessThan(min, max));

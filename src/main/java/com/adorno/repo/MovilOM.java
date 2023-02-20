@@ -5,6 +5,7 @@ import com.adorno.model.Procesador;
 import java.util.List;
 
 public class MovilOM {
+    private static Procesador a15Bionic = new Procesador();
     public static List<Movil> objectMother(){
         return List.of(
                 new Movil("Samsung", "S23", new Procesador(), 128l, 6l, 800),
@@ -12,6 +13,7 @@ public class MovilOM {
                 new Movil("Xiaomi", "Note 10", new Procesador(), 128l, 4l, 300),
                 new Movil("Samsung", "S22", new Procesador(), 256l, 6l, 700),
                 new Movil("Oppo", "A53", new Procesador(), 128l, 4l, 130),
-                new Movil("Samsung", "S22", new Procesador(), 128l, 6l, 700));
+                new Movil("iPhone", "SE", new Procesador(), 64l, 4l, 480),
+                new Movil("Nothing", "Phone(1)", new Procesador(), 128l, 6l, 480));
     }
 }

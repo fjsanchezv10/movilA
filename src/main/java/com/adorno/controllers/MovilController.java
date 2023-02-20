@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/movil")
@@ -22,7 +23,7 @@ public class MovilController {
         this.movilService = movilService;
     }
 
-    @GetMapping("/get/{marca}")
+    @GetMapping("/get/marca/{marca}")
     public ResponseEntity<List<Movil>> getMovilesByMarca(@PathVariable String marca){
         if(movilService.getMovilsByMarcaSummarized(marca).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,7 +45,7 @@ public class MovilController {
         return new ResponseEntity<>(movilService.getMovilesByRAM(min, max).get(), HttpStatus.OK);
     }
     @GetMapping("/get/five")
-    public ResponseEntity<List<Movil>> getFiveMoviles(){
+    public ResponseEntity<Set<Movil>> getFiveMoviles(){
         if(movilService.getFiveMovilSummarized().isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
