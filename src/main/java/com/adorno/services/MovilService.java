@@ -4,7 +4,6 @@ import com.adorno.dto.MovilDTO;
 import com.adorno.model.Movil;
 import com.adorno.model.Pair;
 import com.adorno.model.TipoPantalla;
-import com.adorno.repo.MovilOM;
 import com.adorno.repo.MovilRepository;
 import org.springframework.stereotype.Service;
 
