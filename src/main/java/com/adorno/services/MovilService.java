@@ -19,6 +19,15 @@ public class MovilService {
 
     public MovilService(MovilRepository movilRepository) {
         this.movilRepository = movilRepository;
+        setMoviles();
+    }
+    private void setMoviles(){
+        if(movilRepository.count() == 0){
+            movilRepository.saveAll(MovilOM.objectMother());
+        } else {
+            movilRepository.deleteAll();
+            movilRepository.saveAll(MovilOM.objectMother());
+        }
     }
 
     public Optional<List<Movil>> getFiveMovilSummarized() {

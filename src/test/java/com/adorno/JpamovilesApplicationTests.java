@@ -14,6 +14,7 @@ class JpamovilesApplicationTests {
 
 	@BeforeAll
 	void beforeAll(){
+		movilRepository.deleteAll();
 		movilRepository.saveAll(MovilOM.objectMother());
 	}
 

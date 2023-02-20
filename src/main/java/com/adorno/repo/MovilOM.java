@@ -10,6 +10,8 @@ public class MovilOM {
                 new Movil("Samsung", "S23", new Procesador(), 128l, 6l, 800),
                 new Movil("iPhone", "14", new Procesador(), 64l, 4l, 800),
                 new Movil("Xiaomi", "Note 10", new Procesador(), 128l, 4l, 300),
+                new Movil("Samsung", "S22", new Procesador(), 256l, 6l, 700),
+                new Movil("Oppo", "A53", new Procesador(), 128l, 4l, 130),
                 new Movil("Samsung", "S22", new Procesador(), 128l, 6l, 700));
     }
 }
