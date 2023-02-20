@@ -11,7 +11,6 @@ public interface MovilRepository extends CrudRepository<Movil, Long> {
     List<Movil> findAllByPrecioGreaterThanAndPrecioLessThan(float min, float max);
     List<Movil> findAllByRamGreaterThanAndRamLessThan(float min, float max);
     List<Movil> findAllByNfcIsTrue();
-    List<Movil> findAllByTipoPantallaLike(TipoPantalla tipoPantalla);
     Movil findById(long id);
 
 

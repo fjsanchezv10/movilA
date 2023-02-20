@@ -1,31 +1,25 @@
 package com.adorno.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class Movil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NonNull
 	private String marca;
-	@NonNull
 	private String modelo;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@NonNull
 	private Procesador procesador;
-	@NonNull
 	private Long almacenamiento;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Pantalla pantalla;
-	@NonNull
 	private Long ram;
 	private Double dimensionAlto;
 	private Double dimensionAncho;
@@ -34,11 +28,30 @@ public class Movil {
 	private long camara;
 	private long bateria;
 	private boolean nfc;
-	@NonNull
 	private float precio;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 
 	public TipoPantalla getTipoPantalla(){
 		return this.pantalla.getTipoPantalla();
+	}
+
+	public Movil(String marca, String modelo, Procesador procesador, Long almacenamiento, Pantalla pantalla, Long ram,
+				 Double dimensionAlto, Double dimensionAncho, Double dimensionProfundidad, long peso, long camara,
+				 long bateria, boolean nfc, float precio, LocalDate fechaNacimiento) {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.procesador = procesador;
+		this.almacenamiento = almacenamiento;
+		this.pantalla = pantalla;
+		this.ram = ram;
+		this.dimensionAlto = dimensionAlto;
+		this.dimensionAncho = dimensionAncho;
+		this.dimensionProfundidad = dimensionProfundidad;
+		this.peso = peso;
+		this.camara = camara;
+		this.bateria = bateria;
+		this.nfc = nfc;
+		this.precio = precio;
+		this.fechaNacimiento = fechaNacimiento;
 	}
 }

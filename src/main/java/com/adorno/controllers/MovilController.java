@@ -1,5 +1,6 @@
 package com.adorno.controllers;
 
+import com.adorno.dto.MovilDTO;
 import com.adorno.model.Movil;
 import com.adorno.model.Pair;
 import com.adorno.model.TipoPantalla;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/movil")
@@ -24,7 +24,7 @@ public class MovilController {
     }
 
     @GetMapping("/get/marca/{marca}")
-    public ResponseEntity<List<Movil>> getMovilesByMarca(@PathVariable String marca){
+    public ResponseEntity<List<MovilDTO>> getMovilesByMarca(@PathVariable String marca){
         if(movilService.getMovilsByMarcaSummarized(marca).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -45,7 +45,7 @@ public class MovilController {
         return new ResponseEntity<>(movilService.getMovilesByRAM(min, max).get(), HttpStatus.OK);
     }
     @GetMapping("/get/five")
-    public ResponseEntity<Set<Movil>> getFiveMoviles(){
+    public ResponseEntity<List<MovilDTO>> getFiveMoviles(){
         if(movilService.getFiveMovilSummarized().isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
