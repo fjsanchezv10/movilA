@@ -3,12 +3,9 @@ import com.adorno.model.Movil;
 import com.adorno.model.Pantalla;
 import com.adorno.model.Procesador;
 import com.adorno.model.TipoPantalla;
-import com.adorno.repo.PantallaRepository;
-import com.adorno.repo.ProcesadorRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 public class MovilOM{
 

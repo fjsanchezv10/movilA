@@ -13,5 +13,4 @@ public interface MovilRepository extends CrudRepository<Movil, Long> {
     List<Movil> findAllByNfcIsTrue();
     Movil findById(long id);
 
-
 }

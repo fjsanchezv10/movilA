@@ -1,25 +1,32 @@
 package com.adorno;
 
+import com.adorno.dto.MovilDTO;
+import com.adorno.mappers.LinkedHashMapMovilMapper;
 import com.adorno.om.MovilOM;
 import com.adorno.repo.MovilRepository;
-import com.adorno.repo.PantallaRepository;
-import com.adorno.repo.ProcesadorRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class JpamovilesApplicationTests {
 	@Autowired
 	MovilRepository movilRepository;
-//	WebClient webClient;
-	/*@BeforeEach
+	WebClient webClient;
+	@BeforeEach
 	void beforeEach(){
 		webClient = WebClient.create("http://localhost:8080");
 		movilRepository.saveAll(MovilOM.objectMother());
-	}*/
+	}
 
-	/*@Test
+	@Test
 	void contextLoads() {
 		ResponseEntity<List> responseEntity = webClient
 				.get()
@@ -37,10 +44,9 @@ class JpamovilesApplicationTests {
 			 responseMapped) {
 			System.out.println(movil.modelo());
 		}
-	}*/
-	// TODO FIX
-	@Test
+	}
+	/*@Test
 	void test(){
 		movilRepository.saveAll(MovilOM.objectMother());
-	}
+	}*/
 }

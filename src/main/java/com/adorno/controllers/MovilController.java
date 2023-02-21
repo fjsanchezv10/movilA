@@ -7,10 +7,7 @@ import com.adorno.model.TipoPantalla;
 import com.adorno.services.MovilService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,12 +55,12 @@ public class MovilController {
         }
         return new ResponseEntity<>(movilService.getMovilesIfNFC().get(), HttpStatus.OK);
     }
-    @GetMapping("/get/{screen}")
-    public ResponseEntity<List<Movil>> getMovilesByTipoPantalla(@PathVariable TipoPantalla tipoPantalla){
-        if(movilService.getMovilesByTipoPantalla(tipoPantalla).isEmpty()){
+    @GetMapping("/get/pantalla/{screen}")
+    public ResponseEntity<List<Movil>> getMovilesByTipoPantalla(@PathVariable TipoPantalla screen){
+        if(movilService.getMovilesByTipoPantalla(screen).isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(movilService.getMovilesByTipoPantalla(tipoPantalla).get(), HttpStatus.OK);
+        return new ResponseEntity<>(movilService.getMovilesByTipoPantalla(screen).get(), HttpStatus.OK);
     }
     @GetMapping("/get/pair/{idOne}-{idTwo}")
     public ResponseEntity<Pair<Movil>> getPairOfMovilesByIDs(@PathVariable Long idOne, @PathVariable Long idTwo){
@@ -71,5 +68,10 @@ public class MovilController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(movilService.getTwoMoviles(idOne, idTwo).get(), HttpStatus.OK);
+    }
+
+    @PostMapping("/post")
+    public ResponseEntity<Movil> postMovil(@RequestBody Movil movil){
+        return new ResponseEntity<>(movilService.insertMovil(movil), HttpStatus.OK);
     }
 }
