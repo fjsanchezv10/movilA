@@ -1,8 +1,6 @@
 package com.adorno;
 
 import com.adorno.om.MovilOM;
-import com.adorno.om.PantallaOM;
-import com.adorno.om.ProcesadorOM;
 import com.adorno.repo.MovilRepository;
 import com.adorno.repo.PantallaRepository;
 import com.adorno.repo.ProcesadorRepository;
@@ -14,10 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JpamovilesApplicationTests {
 	@Autowired
 	MovilRepository movilRepository;
-	@Autowired
-	PantallaRepository pantallaRepository;
-	@Autowired
-	ProcesadorRepository procesadorRepository;
 //	WebClient webClient;
 	/*@BeforeEach
 	void beforeEach(){
@@ -44,10 +38,9 @@ class JpamovilesApplicationTests {
 			System.out.println(movil.modelo());
 		}
 	}*/
+	// TODO FIX
 	@Test
 	void test(){
-		pantallaRepository.saveAll(new PantallaOM().objectMother());
-		procesadorRepository.saveAll(new ProcesadorOM().objectMother());
-		movilRepository.saveAll(new MovilOM(procesadorRepository, pantallaRepository).objectMother());
+		movilRepository.saveAll(MovilOM.objectMother());
 	}
 }

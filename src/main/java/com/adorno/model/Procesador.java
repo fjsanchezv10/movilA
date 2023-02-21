@@ -9,7 +9,6 @@ import lombok.*;
 @Entity
 @Data
 @RequiredArgsConstructor
-@AllArgsConstructor
 @NoArgsConstructor
 public class Procesador {
 		 @Id
