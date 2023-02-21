@@ -7,9 +7,12 @@ import java.util.LinkedHashMap;
 
 public class LinkedHashMapMovilMapper implements Mapper<MovilDTO, LinkedHashMap> {
 
+    private final LinkedHashMapProcesadorMapper procesadorMapper = new LinkedHashMapProcesadorMapper();
+
     @Override
     public MovilDTO map(LinkedHashMap linkedHashMap) {
-        return new MovilDTO((String) linkedHashMap.get("marca"), (String) linkedHashMap.get("modelo"), (Procesador) linkedHashMap.get("procesador"),
+        Procesador procesador = procesadorMapper.map((LinkedHashMap) linkedHashMap.get("procesador"));
+        return new MovilDTO((String) linkedHashMap.get("marca"), (String) linkedHashMap.get("modelo"), procesador,
                 (long) linkedHashMap.get("almacenamiento"), (long) linkedHashMap.get("ram"), (float) linkedHashMap.get("precio"));
     }
 }
