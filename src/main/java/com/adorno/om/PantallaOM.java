@@ -6,7 +6,6 @@ import com.adorno.model.TipoPantalla;
 import java.util.List;
 
 public class PantallaOM implements ObjectMother<Pantalla>{
-    public static PantallaOM instance;
     @Override
     public List<Pantalla> objectMother() {
         return List.of(
@@ -15,12 +14,5 @@ public class PantallaOM implements ObjectMother<Pantalla>{
                 new Pantalla(5.4f, TipoPantalla.AMOLED),
                 new Pantalla(6f, TipoPantalla.VA),
                 new Pantalla(4.8f, TipoPantalla.TN));
-    }
-
-    public static PantallaOM getInstance(){
-        if(instance == null){
-            instance = new PantallaOM();
-        }
-        return instance;
     }
 }
