@@ -59,7 +59,12 @@ public class MovilService {
         pair.add(movilRepository.findById(idTwo));
         return Optional.ofNullable(pair);
     }
+    // IMPORTANT: CUSTOM
     public Movil insertMovil(Movil movil){
         return movilRepository.save(movil);
+    }
+    // IMPORTANT: CUSTOM
+    public List<Movil> insertSomeMovil(Iterable<Movil> listMovil){
+        return (List<Movil>) movilRepository.saveAll(listMovil);
     }
 }

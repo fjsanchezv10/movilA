@@ -70,8 +70,15 @@ public class MovilController {
         return new ResponseEntity<>(movilService.getTwoMoviles(idOne, idTwo).get(), HttpStatus.OK);
     }
 
+    // IMPORTANT: CUSTOM
     @PostMapping("/post")
     public ResponseEntity<Movil> postMovil(@RequestBody Movil movil){
         return new ResponseEntity<>(movilService.insertMovil(movil), HttpStatus.OK);
+    }
+
+    // IMPORTANT: CUSTOM
+    @PostMapping("/post/various")
+    public ResponseEntity<List<Movil>> postSomeMovils(@RequestBody List<Movil> movilList){
+        return new ResponseEntity<>(movilService.insertSomeMovil(movilList), HttpStatus.OK);
     }
 }
