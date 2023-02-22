@@ -11,9 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class JpamovilesApplicationTests {
@@ -40,10 +43,12 @@ class JpamovilesApplicationTests {
 				(List<MovilDTO>) body.stream()
 				.map((hashMap)-> new LinkedHashMapMovilMapper().map((LinkedHashMap)hashMap))
 				.collect(Collectors.toList());
+		List<MovilDTO> listMovilesPrueba = new ArrayList<>();
 		for (MovilDTO movil:
 			 responseMapped) {
-			System.out.println(movil.modelo());
+			listMovilesPrueba.add(movil);
 		}
+		assertTrue(listMovilesPrueba.size()==3);
 	}
 	/*@Test
 	void test(){

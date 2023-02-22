@@ -9,7 +9,8 @@ public class LinkedHashMapMovilMapper implements Mapper<MovilDTO, LinkedHashMap>
 
     @Override
     public MovilDTO map(LinkedHashMap linkedHashMap) {
-        return new MovilDTO((String) linkedHashMap.get("marca"), (String) linkedHashMap.get("modelo"), (Procesador) linkedHashMap.get("procesador"),
-                (long) linkedHashMap.get("almacenamiento"), (long) linkedHashMap.get("ram"), (float) linkedHashMap.get("precio"));
+        return new MovilDTO((String) linkedHashMap.get("marca"), (String) linkedHashMap.get("modelo"),
+                new LinkedHashMapProcesadorMapper().map((LinkedHashMap) linkedHashMap.get("procesador")),
+                Long.valueOf(String.valueOf(linkedHashMap.get("almacenamiento"))), Long.valueOf(String.valueOf(linkedHashMap.get("ram"))), Float.valueOf(String.valueOf(linkedHashMap.get("precio"))));
     }
 }
